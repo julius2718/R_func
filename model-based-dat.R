@@ -25,7 +25,7 @@ with_path_noise <- function(
     for (j in 1:3) {
       assign(
         sprintf("lam_%d%d", no, i),
-        rnorm(N, path_lam[sprintf("lam_%d%d", no, i)], 0.5)
+        rnorm(N, path_lam[sprintf("lam_%d%d", no, i)][[1]], 0.5)
       )
       no <- no + 1
     }
@@ -56,10 +56,12 @@ two_groups <- function(
   g2_path_pi = list(), g2_path_lam = list()
 ) {
   g1 <- with_path_noise(
-    N = total * ratio, path_pi = g1_path_pi, path_lam = g1_path_lam, seed = 0
+    N = total * ratio,
+    path_pi = g1_path_pi, path_lam = g1_path_lam, seed = 0
   )
   g2 <- with_path_noise(
-    N = total * ratio, path_pi = g2_path_pi, path_lam = g2_path_lam, seed = 0
+    N = total * (1 - ratio),
+    path_pi = g2_path_pi, path_lam = g2_path_lam, seed = 0
   )
   return(rbind(g1, g2))
 }
