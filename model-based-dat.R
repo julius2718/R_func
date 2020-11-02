@@ -101,17 +101,17 @@ with_path_noise <- function(
   return(as.data.frame(dat_list))
 }
 
-two_groups <- function(
+two_groups_with_noise <- function(
   total = 10000, ratio = 0.5,
   g1_path_pi = list(), g1_path_lam = list(),
   g2_path_pi = list(), g2_path_lam = list()
 ) {
   g1 <- with_path_noise(
-    N = total * ratio,
+    n = total * ratio,
     path_pi = g1_path_pi, path_lam = g1_path_lam, seed = 0
   )
   g2 <- with_path_noise(
-    N = total * (1 - ratio),
+    n = total * (1 - ratio),
     path_pi = g2_path_pi, path_lam = g2_path_lam, seed = 0
   )
   return(rbind(g1, g2))

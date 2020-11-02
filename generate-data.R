@@ -120,3 +120,17 @@ generate_data <- function(seed = NULL,
 
   return(generated_data)
 }
+
+# Extract Data-----------------------------------------------------------------
+extract_data <- function(data, sizes = c(10), n_dataset = 10, seed = 0) {
+  set.seed(seed)
+  ex_datasets <- list()
+  ex_datasets <- lapply(sizes, FUN = function(x) {
+    .temp <- list()
+    for (i in 1:n_dataset) {
+      .temp <- c(.temp, list(dplyr::sample_n(tbl = data, size = x)))
+    }
+    return(.temp)
+  })
+  return(ex_datasets)
+}
