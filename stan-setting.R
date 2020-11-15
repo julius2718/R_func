@@ -59,3 +59,12 @@ extract_summary_from_df <- function(data = data.frame(), pars = c()) {
     )
   )
 }
+
+# Save stanfit Objects---------------------------------------------------------
+save_stanfit <- function(obj, should_save = "y", file = "fit.rds") {
+  if (should_save == "y") {
+    saveRDS(obj, file = file)
+  } else if (should_save != "n") {
+    cat("Unexpected input detected. Defauling to 'n'.")
+  }
+}
